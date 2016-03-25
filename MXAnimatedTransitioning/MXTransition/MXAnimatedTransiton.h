@@ -19,5 +19,9 @@ typedef NS_ENUM(NSInteger, MXAnimatedType)
 @interface MXAnimatedTransiton : NSObject<UIViewControllerAnimatedTransitioning>
 
 
++ (MXAnimatedTransiton *)transitionWithType:(MXAnimatedType)type
+                                  durantion:(NSTimeInterval)duration
+                              presentHeight:(CGFloat)presentHeight
+                                      scale:(CGPoint)scale;
 
 @end

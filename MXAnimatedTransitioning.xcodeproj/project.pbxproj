@@ -16,6 +16,7 @@
 		DD2ED7EB1CA19D2D000FF50F /* MXAnimatedTransitioningTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2ED7EA1CA19D2D000FF50F /* MXAnimatedTransitioningTests.m */; };
 		DD2ED7F61CA19D2D000FF50F /* MXAnimatedTransitioningUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2ED7F51CA19D2D000FF50F /* MXAnimatedTransitioningUITests.m */; };
 		DD2ED8091CA19E70000FF50F /* MXAnimatedTransiton.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2ED8081CA19E70000FF50F /* MXAnimatedTransiton.m */; };
+		DDB358BA1CA532C500327C60 /* aViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB358B91CA532C500327C60 /* aViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,8 @@
 		DD2ED7F71CA19D2D000FF50F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DD2ED8071CA19E70000FF50F /* MXAnimatedTransiton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MXAnimatedTransiton.h; sourceTree = "<group>"; };
 		DD2ED8081CA19E70000FF50F /* MXAnimatedTransiton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXAnimatedTransiton.m; sourceTree = "<group>"; };
+		DDB358B81CA532C500327C60 /* aViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aViewController.h; sourceTree = "<group>"; };
+		DDB358B91CA532C500327C60 /* aViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = aViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +112,8 @@
 				DD2ED7D41CA19D2D000FF50F /* AppDelegate.m */,
 				DD2ED7D61CA19D2D000FF50F /* ViewController.h */,
 				DD2ED7D71CA19D2D000FF50F /* ViewController.m */,
+				DDB358B81CA532C500327C60 /* aViewController.h */,
+				DDB358B91CA532C500327C60 /* aViewController.m */,
 				DD2ED7D91CA19D2D000FF50F /* Main.storyboard */,
 				DD2ED7DC1CA19D2D000FF50F /* Assets.xcassets */,
 				DD2ED7DE1CA19D2D000FF50F /* LaunchScreen.storyboard */,
@@ -285,6 +290,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD2ED7D81CA19D2D000FF50F /* ViewController.m in Sources */,
+				DDB358BA1CA532C500327C60 /* aViewController.m in Sources */,
 				DD2ED7D51CA19D2D000FF50F /* AppDelegate.m in Sources */,
 				DD2ED8091CA19E70000FF50F /* MXAnimatedTransiton.m in Sources */,
 				DD2ED7D21CA19D2D000FF50F /* main.m in Sources */,

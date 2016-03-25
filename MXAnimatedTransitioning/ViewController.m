@@ -8,6 +8,8 @@
 
 #import "ViewController.h"
 
+#import "aViewController.h"
+
 @interface ViewController ()
 
 @end
@@ -17,8 +19,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-
+    self.view.backgroundColor = [UIColor cyanColor];
+    
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setTitle:@"跳转" forState:UIControlStateNormal];
+    
+    
 }
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -10,8 +10,9 @@
 
 @interface MXAnimatedTransiton ()
 
-@property (nonatomic, assign) CGFloat presentHeight;
-@property (nonatomic, assign) CGPoint scale;
+@property (nonatomic, assign) MXAnimatedType type;
+@property (nonatomic, assign) CGFloat        presentHeight;
+@property (nonatomic, assign) CGPoint        scale;
 @property (nonatomic, assign) NSTimeInterval duration;
 
 @end
@@ -22,19 +23,49 @@
 
 #pragma mark - UIViewControllerAnimatedTransitioning
 
++ (MXAnimatedTransiton *)transitionWithType:(MXAnimatedType)type
+                                durantion:(NSTimeInterval)duration
+                            presentHeight:(CGFloat)presentHeight
+                                    scale:(CGPoint)scale
+{
+    MXAnimatedTransiton *transition = [[MXAnimatedTransiton alloc] init];
+    
+    transition.type = type;
+    transition.presentHeight = presentHeight;
+    transition.scale = scale;
+    transition.duration = duration;
+    
+    return transition;
+}
+
+
+
+#pragma mark - UIViewControllerAnimatedTransitioning
+
+- (void)animationEnded:(BOOL)transitionCompleted
+{
+    NSLog(@"%s", __FUNCTION__);
+}
+
 - (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext
 {
-    return 5.f;
+    return self.duration;
 }
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext
 {
-    
-}
-
-- (void)animationEnded:(BOOL)transitionCompleted
-{
-    
+    switch (self.type) {
+        case MXAnimatedPresentType:
+            [self present:transitionContext];
+            break;
+        
+        case MXAnimatedDismissType:
+            [self dismiss:transitionContext];
+            break;
+            
+        default:
+            break;
+    }
 }
 
 #pragma mark - Private

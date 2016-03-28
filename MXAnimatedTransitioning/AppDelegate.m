@@ -2,12 +2,11 @@
 //  AppDelegate.m
 //  MXAnimatedTransitioning
 //
-//  Created by 谢鹏翔 on 16/3/22.
+//  Created by 谢鹏翔 on 16/3/28.
 //  Copyright © 2016年 谢鹏翔. All rights reserved.
 //
 
 #import "AppDelegate.h"
-#import "ViewController.h"
 
 @interface AppDelegate ()
 
@@ -18,12 +17,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    
-    _window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    _window.backgroundColor = [UIColor whiteColor];
-    _window.rootViewController = [ViewController new];
-    [_window makeKeyAndVisible];
-    
     return YES;
 }
 

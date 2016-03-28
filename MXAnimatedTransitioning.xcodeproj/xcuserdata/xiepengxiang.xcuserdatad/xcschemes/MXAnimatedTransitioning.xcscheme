@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DD2ED7CC1CA19D2D000FF50F"
+               BlueprintIdentifier = "DD4E99431CA9102C00C1DFBC"
                BuildableName = "MXAnimatedTransitioning.app"
                BlueprintName = "MXAnimatedTransitioning"
                ReferencedContainer = "container:MXAnimatedTransitioning.xcodeproj">
@@ -32,7 +32,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DD2ED7E51CA19D2D000FF50F"
+               BlueprintIdentifier = "DD4E995C1CA9102C00C1DFBC"
                BuildableName = "MXAnimatedTransitioningTests.xctest"
                BlueprintName = "MXAnimatedTransitioningTests"
                ReferencedContainer = "container:MXAnimatedTransitioning.xcodeproj">
@@ -42,7 +42,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DD2ED7F01CA19D2D000FF50F"
+               BlueprintIdentifier = "DD4E99671CA9102C00C1DFBC"
                BuildableName = "MXAnimatedTransitioningUITests.xctest"
                BlueprintName = "MXAnimatedTransitioningUITests"
                ReferencedContainer = "container:MXAnimatedTransitioning.xcodeproj">
@@ -52,7 +52,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "DD2ED7CC1CA19D2D000FF50F"
+            BlueprintIdentifier = "DD4E99431CA9102C00C1DFBC"
             BuildableName = "MXAnimatedTransitioning.app"
             BlueprintName = "MXAnimatedTransitioning"
             ReferencedContainer = "container:MXAnimatedTransitioning.xcodeproj">
@@ -75,7 +75,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "DD2ED7CC1CA19D2D000FF50F"
+            BlueprintIdentifier = "DD4E99431CA9102C00C1DFBC"
             BuildableName = "MXAnimatedTransitioning.app"
             BlueprintName = "MXAnimatedTransitioning"
             ReferencedContainer = "container:MXAnimatedTransitioning.xcodeproj">
@@ -94,7 +94,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "DD2ED7CC1CA19D2D000FF50F"
+            BlueprintIdentifier = "DD4E99431CA9102C00C1DFBC"
             BuildableName = "MXAnimatedTransitioning.app"
             BlueprintName = "MXAnimatedTransitioning"
             ReferencedContainer = "container:MXAnimatedTransitioning.xcodeproj">

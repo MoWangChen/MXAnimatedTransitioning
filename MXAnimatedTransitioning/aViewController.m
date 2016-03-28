@@ -1,39 +1,43 @@
 //
-//  aViewController.m
+//  AViewController.m
 //  MXAnimatedTransitioning
 //
-//  Created by 谢鹏翔 on 16/3/25.
+//  Created by 谢鹏翔 on 16/3/28.
 //  Copyright © 2016年 谢鹏翔. All rights reserved.
 //
 
-#import "aViewController.h"
+#import "AViewController.h"
 #import "MXAnimatedTransiton.h"
 
-@implementation aViewController
+
+@implementation AViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    self.transitioningDelegate = self;
-    self.modalPresentationStyle = UIModalPresentationCustom;
+    self.view.backgroundColor = [UIColor cyanColor];
+    
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.frame = CGRectMake(50, 100, 100, 50);
+    [button setTitle:@"dismiss返回" forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [button setBackgroundColor:[UIColor orangeColor]];
+    button.titleLabel.font = [UIFont systemFontOfSize:15];
+    [button addTarget:self action:@selector(backVC:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:button];
+    
 }
-- (IBAction)backVC:(id)sender {
+
+
+- (void)backVC:(id)sender {
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
-#pragma mark - UIViewControllerTransitioningDelegate
-- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source
-{
-    return [MXAnimatedTransiton transitionWithType:MXAnimatedPresentType durantion:0.5 presentHeight:350 scale:CGPointMake(0.9, 0.9)];
-}
 
-- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed
-{
-    return [MXAnimatedTransiton transitionWithType:MXAnimatedDismissType durantion:0.5 presentHeight:350 scale:CGPointMake(0.9, 0.9)];
-}
+
 
 
 @end

@@ -1,5 +1,5 @@
 //
-//  AppDelegate.h
+//  MXRootViewController.h
 //  MXAnimatedTransitioning
 //
 //  Created by 谢鹏翔 on 16/3/28.
@@ -8,10 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
-
-@property (strong, nonatomic) UIWindow *window;
+@interface MXRootViewController : UIViewController<UIViewControllerTransitioningDelegate>
 
 
 @end
-

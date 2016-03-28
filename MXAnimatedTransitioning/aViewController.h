@@ -1,13 +1,13 @@
 //
-//  aViewController.h
+//  AViewController.h
 //  MXAnimatedTransitioning
 //
-//  Created by 谢鹏翔 on 16/3/25.
+//  Created by 谢鹏翔 on 16/3/28.
 //  Copyright © 2016年 谢鹏翔. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "MXRootViewController.h"
 
-@interface aViewController : UIViewController<UIViewControllerTransitioningDelegate>
+@interface AViewController : MXRootViewController
 
 @end

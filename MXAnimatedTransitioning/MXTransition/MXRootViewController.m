@@ -8,15 +8,17 @@
 
 #import "MXRootViewController.h"
 #import "MXAnimatedTransiton.h"
+
 @implementation MXRootViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    self.transitioningDelegate = self;
-    self.modalPresentationStyle = UIModalPresentationCustom;
-
+    if (_MXType != MXAnimatedSegueTypeDefault) {
+        self.transitioningDelegate = self;
+        self.modalPresentationStyle = UIModalPresentationCustom;
+    }
 }
 
 #pragma mark - UIViewControllerTransitioningDelegate

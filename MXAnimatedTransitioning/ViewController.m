@@ -28,6 +28,9 @@
     [button addTarget:self action:@selector(nextVC) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button];
     
+    
+    
+    
 }
 
 - (void)nextVC

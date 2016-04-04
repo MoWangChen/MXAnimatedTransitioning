@@ -169,6 +169,8 @@
     UIViewController *toVC   = [transitonContext viewControllerForKey:UITransitionContextToViewControllerKey];
     UIView *containerView    = [transitonContext containerView];
     
+    
+    
     // 取出present时的截图用于动画
     UIView *tempView = containerView.subviews.lastObject;
     

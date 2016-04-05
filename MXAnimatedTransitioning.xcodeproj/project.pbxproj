@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DD3128E21CB3B2EC0013E93E /* UITapGestureRecognizer+blankSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = DD3128E11CB3B2EC0013E93E /* UITapGestureRecognizer+blankSlider.m */; };
 		DD4E99491CA9102C00C1DFBC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DD4E99481CA9102C00C1DFBC /* main.m */; };
 		DD4E994C1CA9102C00C1DFBC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DD4E994B1CA9102C00C1DFBC /* AppDelegate.m */; };
 		DD4E994F1CA9102C00C1DFBC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD4E994E1CA9102C00C1DFBC /* ViewController.m */; };
@@ -38,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DD3128E01CB3B2EC0013E93E /* UITapGestureRecognizer+blankSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITapGestureRecognizer+blankSlider.h"; sourceTree = "<group>"; };
+		DD3128E11CB3B2EC0013E93E /* UITapGestureRecognizer+blankSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITapGestureRecognizer+blankSlider.m"; sourceTree = "<group>"; };
 		DD4E99441CA9102C00C1DFBC /* MXAnimatedTransitioning.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MXAnimatedTransitioning.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD4E99481CA9102C00C1DFBC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DD4E994A1CA9102C00C1DFBC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -157,6 +160,8 @@
 			children = (
 				DD799AE51CA9107B008F7DA6 /* MXAnimatedTransiton.h */,
 				DD799AE61CA9107B008F7DA6 /* MXAnimatedTransiton.m */,
+				DD3128E01CB3B2EC0013E93E /* UITapGestureRecognizer+blankSlider.h */,
+				DD3128E11CB3B2EC0013E93E /* UITapGestureRecognizer+blankSlider.m */,
 				DD799AEB1CA9141D008F7DA6 /* MXRootViewController.h */,
 				DD799AEC1CA9141D008F7DA6 /* MXRootViewController.m */,
 			);
@@ -296,6 +301,7 @@
 			files = (
 				DD4E994F1CA9102C00C1DFBC /* ViewController.m in Sources */,
 				DD799AEA1CA910F0008F7DA6 /* AViewController.m in Sources */,
+				DD3128E21CB3B2EC0013E93E /* UITapGestureRecognizer+blankSlider.m in Sources */,
 				DD4E994C1CA9102C00C1DFBC /* AppDelegate.m in Sources */,
 				DD799AE71CA9107B008F7DA6 /* MXAnimatedTransiton.m in Sources */,
 				DD4E99491CA9102C00C1DFBC /* main.m in Sources */,

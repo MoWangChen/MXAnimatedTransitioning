@@ -7,6 +7,7 @@
 //
 
 #import "MXAnimatedTransiton.h"
+#import "UITapGestureRecognizer+blankSlider.h"
 
 @interface MXAnimatedTransiton ()
 
@@ -138,6 +139,11 @@
     UIView *tempView = [fromVC.view snapshotViewAfterScreenUpdates:NO];
     tempView.frame = fromVC.view.frame;
     
+    // 增加空白处  点击 退出侧边栏效果
+    UITapGestureRecognizer *tapBlank = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickBlank:)];
+    tapBlank.currentViewController = toVC;
+    [tempView addGestureRecognizer:tapBlank];
+    
     // 对截图添加动画，则fromVC可以隐藏
     fromVC.view.hidden = YES;
     
@@ -189,5 +195,11 @@
         }
     }];
 }
+
+- (void)clickBlank:(UITapGestureRecognizer *)gesture
+{
+    [gesture.currentViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 @end

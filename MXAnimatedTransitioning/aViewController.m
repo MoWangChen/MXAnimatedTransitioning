@@ -16,6 +16,8 @@
 {
     [super viewDidLoad];
     
+    
+    
     self.view.backgroundColor = [UIColor cyanColor];
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -26,6 +28,7 @@
     button.titleLabel.font = [UIFont systemFontOfSize:15];
     [button addTarget:self action:@selector(backVC:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button];
+    
     
 }
 

@@ -140,7 +140,7 @@
     tempView.frame = fromVC.view.frame;
     
     // 增加空白处  点击 退出侧边栏效果
-    UITapGestureRecognizer *tapBlank = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickBlank:)];
+    UITapGestureRecognizer *tapBlank = [[UITapGestureRecognizer alloc] initWithTarget:toVC action:@selector(clickBlank:)];
     tapBlank.currentViewController = toVC;
     [tempView addGestureRecognizer:tapBlank];
     
@@ -196,6 +196,8 @@
     }];
 }
 
+
+#pragma mark - Privite Method
 - (void)clickBlank:(UITapGestureRecognizer *)gesture
 {
     [gesture.currentViewController dismissViewControllerAnimated:YES completion:nil];

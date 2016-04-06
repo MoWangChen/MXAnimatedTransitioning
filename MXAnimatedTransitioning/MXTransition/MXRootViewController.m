@@ -8,6 +8,7 @@
 
 #import "MXRootViewController.h"
 #import "MXAnimatedTransiton.h"
+#import "UITapGestureRecognizer+blankSlider.h"
 
 @implementation MXRootViewController
 
@@ -19,6 +20,11 @@
         self.transitioningDelegate = self;
         self.modalPresentationStyle = UIModalPresentationCustom;
     }
+}
+
+- (void)clickBlank:(UITapGestureRecognizer *)gesture
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - UIViewControllerTransitioningDelegate

@@ -10,6 +10,10 @@
 #import "MXAnimatedTransiton.h"
 #import "UITapGestureRecognizer+blankSlider.h"
 
+#define ScreenWidth         ([UIScreen mainScreen].bounds.size.width)
+#define ScreenHeight        ([UIScreen mainScreen].bounds.size.height)
+
+
 @implementation MXRootViewController
 
 - (void)viewDidLoad
@@ -19,7 +23,12 @@
     if (_MXType != MXAnimatedSegueTypeDefault) {
         self.transitioningDelegate = self;
         self.modalPresentationStyle = UIModalPresentationCustom;
+        self.view.frame = CGRectMake(0, 0, 220 , ScreenHeight);
+        self.view.clipsToBounds = YES;
     }
+    
+    
+    
 }
 
 - (void)clickBlank:(UITapGestureRecognizer *)gesture

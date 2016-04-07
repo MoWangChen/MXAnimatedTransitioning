@@ -45,7 +45,7 @@
 
 - (void)animationEnded:(BOOL)transitionCompleted
 {
-    NSLog(@"%s", __FUNCTION__);
+//    NSLog(@"%s", __FUNCTION__);
 }
 
 - (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext
@@ -61,7 +61,7 @@
             break;
         
         case MXAnimatedDismissType:
-            [self dismiss:transitionContext];
+            [self dismissSliederMode:transitionContext];
             break;
             
         default:
@@ -69,7 +69,7 @@
     }
 }
 
-#pragma mark - Private  Animate --1
+#pragma mark - Private  Animate -- example
 - (void)present:(id<UIViewControllerContextTransitioning>)transitonContext {
     UIViewController *fromVC    = [transitonContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     UIViewController *toVC      = [transitonContext viewControllerForKey:UITransitionContextToViewControllerKey];
@@ -129,7 +129,7 @@
     }];
 }
 
-#pragma mark - Private  Animate --1
+#pragma mark - Private  Animate -- 1.侧边栏
 - (void)presentSliederMode:(id<UIViewControllerContextTransitioning>)transitonContext {
     UIViewController *fromVC    = [transitonContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     UIViewController *toVC      = [transitonContext viewControllerForKey:UITransitionContextToViewControllerKey];
@@ -159,10 +159,11 @@
     __weak __typeof(self) weakSelf = self;
     [UIView animateWithDuration:self.duration delay:0.0 usingSpringWithDamping:0.5 initialSpringVelocity:1.0 / 0.5 options:0 animations:^{
         // 在Y方向移动指定的高度
-        toVC.view.transform = CGAffineTransformMakeTranslation(weakSelf.presentHeight, 0);
+        tempView.transform = CGAffineTransformMakeTranslation(weakSelf.presentHeight, 0);
+        toVC.view.transform   = CGAffineTransformMakeTranslation(weakSelf.presentHeight, 0);
         
         // 让截图缩放
-        tempView.transform = CGAffineTransformMakeScale(weakSelf.scale.x, weakSelf.scale.y);
+//        tempView.transform = CGAffineTransformMakeScale(weakSelf.scale.x, weakSelf.scale.y);
     } completion:^(BOOL finished) {
         if (finished) {
             [transitonContext completeTransition:YES];
@@ -175,16 +176,14 @@
     UIViewController *toVC   = [transitonContext viewControllerForKey:UITransitionContextToViewControllerKey];
     UIView *containerView    = [transitonContext containerView];
     
-    
-    
     // 取出present时的截图用于动画
-    UIView *tempView = containerView.subviews.lastObject;
+    UIView *tempView = containerView.subviews.firstObject;
     
     // 开始动画
     [UIView animateWithDuration:self.duration animations:^{
         toVC.view.transform = CGAffineTransformIdentity;
         fromVC.view.transform = CGAffineTransformIdentity;
-        
+        tempView.transform = CGAffineTransformIdentity;
     } completion:^(BOOL finished) {
         if (finished) {
             [transitonContext completeTransition:YES];
@@ -195,6 +194,7 @@
         }
     }];
 }
+
 
 
 #pragma mark - Privite Method

@@ -20,7 +20,7 @@
     self.view.backgroundColor = [UIColor cyanColor];
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame = CGRectMake( 50, 100, 100, 50);
+    button.frame = CGRectMake( self.view.bounds.size.width - 150, 100, 100, 50);
     [button setTitle:@"dismiss返回" forState:UIControlStateNormal];
     [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [button setBackgroundColor:[UIColor orangeColor]];

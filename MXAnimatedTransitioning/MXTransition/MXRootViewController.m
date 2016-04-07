@@ -24,7 +24,7 @@
 
 - (void)clickBlank:(UITapGestureRecognizer *)gesture
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [gesture.currentViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - UIViewControllerTransitioningDelegate

@@ -13,7 +13,7 @@ typedef NS_ENUM(NSInteger, MXAnimatedSegueType)
     MXAnimatedSegueTypeDefault  = 0,
     MXAnimatedSegueTypeSlider   = 1 << 1,
     MXAnimatedSegueTypeWindow   = 1 << 2,
-    MXAnimatedSegueTypeCustom2  = 1 << 3
+//    MXAnimatedSegueTypeCustom2  = 1 << 3
 };
 
 @interface MXRootViewController : UIViewController<UIViewControllerTransitioningDelegate>

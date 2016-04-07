@@ -57,11 +57,17 @@
 {
     switch (self.type) {
         case MXAnimatedPresentType:
-            [self presentSliederMode:transitionContext];
+            [self present:transitionContext];
             break;
-        
         case MXAnimatedDismissType:
-            [self dismissSliederMode:transitionContext];
+            [self dismiss:transitionContext];
+            break;
+            
+        case MXAnimatedPresentSliderType:
+            [self presentSliderMode:transitionContext];
+            break;
+        case MXAnimatedDismissSliderType:
+            [self dismissSliderMode:transitionContext];
             break;
             
         default:
@@ -81,6 +87,8 @@
     
     // 对截图添加动画，则fromVC可以隐藏
     fromVC.view.hidden = YES;
+    
+    
     
     // 要实现转场，必须加入到containerView中
     [containerView addSubview:tempView];
@@ -130,7 +138,7 @@
 }
 
 #pragma mark - Private  Animate -- 1.侧边栏
-- (void)presentSliederMode:(id<UIViewControllerContextTransitioning>)transitonContext {
+- (void)presentSliderMode:(id<UIViewControllerContextTransitioning>)transitonContext {
     UIViewController *fromVC    = [transitonContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     UIViewController *toVC      = [transitonContext viewControllerForKey:UITransitionContextToViewControllerKey];
     UIView *containerView       = [transitonContext containerView];
@@ -138,6 +146,15 @@
     // 对fromVC.view的截图添加动画效果
     UIView *tempView = [fromVC.view snapshotViewAfterScreenUpdates:NO];
     tempView.frame = fromVC.view.frame;
+    
+    // 添加边框特效
+    UIView *coolLine = [[UIView alloc] initWithFrame:CGRectMake(-1, 0, 1, tempView.bounds.size.height)];
+    coolLine.backgroundColor = [UIColor orangeColor];
+    coolLine.layer.shadowOffset = CGSizeMake(0, 5);
+    coolLine.layer.shadowRadius = 5.0;
+    coolLine.layer.shadowColor = [UIColor redColor].CGColor;
+    coolLine.layer.shadowOpacity = 1;
+    [tempView addSubview:coolLine];
     
     // 增加空白处  点击 退出侧边栏效果
     UITapGestureRecognizer *tapBlank = [[UITapGestureRecognizer alloc] initWithTarget:toVC action:@selector(clickBlank:)];
@@ -171,7 +188,7 @@
     }];
 }
 
-- (void)dismissSliederMode:(id<UIViewControllerContextTransitioning>)transitonContext {
+- (void)dismissSliderMode:(id<UIViewControllerContextTransitioning>)transitonContext {
     UIViewController *fromVC = [transitonContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     UIViewController *toVC   = [transitonContext viewControllerForKey:UITransitionContextToViewControllerKey];
     UIView *containerView    = [transitonContext containerView];

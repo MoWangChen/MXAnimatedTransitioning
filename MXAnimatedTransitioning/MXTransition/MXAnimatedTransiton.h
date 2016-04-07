@@ -13,7 +13,10 @@
 typedef NS_ENUM(NSInteger, MXAnimatedType)
 {
     MXAnimatedPresentType,
-    MXAnimatedDismissType
+    MXAnimatedDismissType,
+    
+    MXAnimatedPresentSliderType,
+    MXAnimatedDismissSliderType
 };
 
 @interface MXAnimatedTransiton : NSObject<UIViewControllerAnimatedTransitioning>

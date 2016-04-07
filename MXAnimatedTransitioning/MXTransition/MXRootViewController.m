@@ -27,8 +27,6 @@
         self.view.clipsToBounds = YES;
     }
     
-    
-    
 }
 
 - (void)clickBlank:(UITapGestureRecognizer *)gesture
@@ -39,12 +37,40 @@
 #pragma mark - UIViewControllerTransitioningDelegate
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source
 {
-    return [MXAnimatedTransiton transitionWithType:MXAnimatedPresentType durantion:0.5 presentHeight:220 scale:CGPointMake(1, 1)];
+    switch (self.MXType) {
+        case MXAnimatedSegueTypeSlider:
+            return [MXAnimatedTransiton transitionWithType:MXAnimatedPresentSliderType durantion:0.5 presentHeight:220 scale:CGPointMake(1, 1)];
+            break;
+            
+        case MXAnimatedSegueTypeWindow:
+            return [MXAnimatedTransiton transitionWithType:MXAnimatedPresentType durantion:0.5 presentHeight:220 scale:CGPointMake(1, 1)];
+            break;
+            
+        default:
+            break;
+    }
+    
+    
+    return nil;
 }
 
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed
 {
-    return [MXAnimatedTransiton transitionWithType:MXAnimatedDismissType durantion:0.5 presentHeight:220 scale:CGPointMake(1, 1)];
+    
+    switch (self.MXType) {
+        case MXAnimatedSegueTypeSlider:
+            return [MXAnimatedTransiton transitionWithType:MXAnimatedDismissSliderType durantion:0.5 presentHeight:220 scale:CGPointMake(1, 1)];
+            break;
+            
+        case MXAnimatedSegueTypeWindow:
+            return [MXAnimatedTransiton transitionWithType:MXAnimatedDismissType durantion:0.5 presentHeight:220 scale:CGPointMake(1, 1)];
+            break;
+            
+        default:
+            break;
+    }
+    
+    return nil;
 }
 
 @end

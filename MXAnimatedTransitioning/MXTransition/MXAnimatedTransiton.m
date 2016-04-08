@@ -70,6 +70,13 @@
             [self dismissSliderMode:transitionContext];
             break;
             
+        case MXAnimatedPresentWindowType:
+            [self presentWindowMode:transitionContext];
+            break;
+        case MXAnimatedDismissWindowType:
+            [self dismissWindowMode:transitionContext];
+            break;
+            
         default:
             break;
     }
@@ -213,12 +220,121 @@
 }
 
 
+#pragma mark - Privite Animate -- 2.窗户效果
+- (void)presentWindowMode:(id<UIViewControllerContextTransitioning>)transitonContext {
+    UIViewController *fromVC    = [transitonContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+    UIViewController *toVC      = [transitonContext viewControllerForKey:UITransitionContextToViewControllerKey];
+    UIView *containerView       = [transitonContext containerView];
+    
+    // 对fromVC.view的截图添加动画效果
+    UIView *tempView = [fromVC.view snapshotViewAfterScreenUpdates:NO];
+    tempView.frame = fromVC.view.frame;
+    
+    UIImage *leftPartImage = [self screenShotingView:tempView size:CGSizeMake(tempView.bounds.size.width/2, tempView.bounds.size.height)];
+    UIImage *rightPartImage = [self screenShotingView:tempView size:CGSizeMake(tempView.bounds.size.width/2, tempView.bounds.size.height)];
+    
+    UIImageView *leftPartWindow = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, tempView.bounds.size.width/2, tempView.bounds.size.height)];
+    leftPartWindow.image = leftPartImage;
+    leftPartWindow.contentMode = UIViewContentModeScaleAspectFit;
+    
+    UIImageView *rightPartWindow = [[UIImageView alloc] initWithFrame:CGRectMake(tempView.bounds.size.width/2, 0, tempView.bounds.size.width/2, tempView.bounds.size.height)];
+    rightPartWindow.image = rightPartImage;
+    rightPartWindow.contentMode = UIViewContentModeScaleAspectFit;
+    
+    
+    
+    // 对截图添加动画，则fromVC可以隐藏
+    fromVC.view.hidden = YES;
+    
+    // 要实现转场，必须加入到containerView中
+    [containerView addSubview:toVC.view];
+    [containerView addSubview:leftPartWindow];
+    [containerView addSubview:rightPartWindow];
+    
+    
+    // 我们要设置外部所传参数
+    // 设置呈现的高度
+    toVC.view.frame = CGRectMake(-self.presentHeight,0,self.presentHeight,containerView.frame.size.height);
+    
+    // 开始动画
+    __weak __typeof(self) weakSelf = self;
+    [UIView animateWithDuration:self.duration delay:0.0 usingSpringWithDamping:0.5 initialSpringVelocity:1.0 / 0.5 options:0 animations:^{
+        // 在Y方向移动指定的高度
+//        tempView.transform = CGAffineTransformMakeTranslation(weakSelf.presentHeight, 0);
+        leftPartWindow.transform = CGAffineTransformMakeTranslation(- tempView.bounds.size.width/2, 0);
+        rightPartWindow.transform = CGAffineTransformMakeTranslation( tempView.bounds.size.width/2, 0);
+        toVC.view.transform   = CGAffineTransformMakeTranslation(weakSelf.presentHeight, 0);
+        
+        
+    } completion:^(BOOL finished) {
+        if (finished) {
+            [transitonContext completeTransition:YES];
+        }
+    }];
+}
+
+- (void)dismissWindowMode:(id<UIViewControllerContextTransitioning>)transitonContext {
+    UIViewController *fromVC = [transitonContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+    UIViewController *toVC   = [transitonContext viewControllerForKey:UITransitionContextToViewControllerKey];
+    UIView *containerView    = [transitonContext containerView];
+    
+    // 取出present时的截图用于动画
+    UIView *tempView = containerView.subviews.firstObject;
+    
+    // 开始动画
+    [UIView animateWithDuration:self.duration animations:^{
+        toVC.view.transform = CGAffineTransformIdentity;
+        fromVC.view.transform = CGAffineTransformIdentity;
+        tempView.transform = CGAffineTransformIdentity;
+    } completion:^(BOOL finished) {
+        if (finished) {
+            [transitonContext completeTransition:YES];
+            toVC.view.hidden = NO;
+            
+            // 将截图去掉
+            [tempView removeFromSuperview];
+        }
+    }];
+}
+
+
 
 #pragma mark - Privite Method
 - (void)clickBlank:(UITapGestureRecognizer *)gesture
 {
     [gesture.currentViewController dismissViewControllerAnimated:YES completion:nil];
 }
+
+
+#pragma mark - Tools Function
+- (UIImage *)addImage:(UIImage *)image1 toImage:(UIImage *)image2 {
+    UIGraphicsBeginImageContext(image1.size);
+    
+    // Draw image1
+    [image1 drawInRect:CGRectMake(0, 0, image1.size.width/2, image1.size.height)];
+    
+    // Draw image2
+    [image2 drawInRect:CGRectMake(image2.size.width/2, 0, image2.size.width/2, image2.size.height)];
+    
+    UIImage *resultingImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    return resultingImage;
+}
+
+- (UIImage *)screenShotingView:(UIView *)view size:(CGSize)size {
+    UIGraphicsBeginImageContext(size);
+    if ([view respondsToSelector:@selector(drawViewHierarchyInRect:afterScreenUpdates:)]) {
+        [view drawViewHierarchyInRect:view.bounds afterScreenUpdates:YES];
+    }else {
+        [view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    }
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+
 
 
 @end

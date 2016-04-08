@@ -36,7 +36,7 @@
 - (void)nextVC
 {
     AViewController *aVC = [AViewController new];
-    aVC.MXType = MXAnimatedSegueTypeSlider;
+    aVC.MXType = MXAnimatedSegueTypeWindow;
     [self presentViewController:aVC animated:YES completion:nil];
 }
 

@@ -43,7 +43,7 @@
             break;
             
         case MXAnimatedSegueTypeWindow:
-            return [MXAnimatedTransiton transitionWithType:MXAnimatedPresentType durantion:0.5 presentHeight:220 scale:CGPointMake(1, 1)];
+            return [MXAnimatedTransiton transitionWithType:MXAnimatedPresentWindowType durantion:0.5 presentHeight:220 scale:CGPointMake(1, 1)];
             break;
             
         default:
@@ -63,7 +63,7 @@
             break;
             
         case MXAnimatedSegueTypeWindow:
-            return [MXAnimatedTransiton transitionWithType:MXAnimatedDismissType durantion:0.5 presentHeight:220 scale:CGPointMake(1, 1)];
+            return [MXAnimatedTransiton transitionWithType:MXAnimatedDismissWindowType durantion:0.5 presentHeight:220 scale:CGPointMake(1, 1)];
             break;
             
         default:

@@ -16,12 +16,24 @@ typedef NS_ENUM(NSInteger, MXAnimatedType)
     MXAnimatedDismissType,
     
     MXAnimatedPresentSliderType,
-    MXAnimatedDismissSliderType
+    MXAnimatedDismissSliderType,
+    
+    MXAnimatedPresentWindowType,
+    MXAnimatedDismissWindowType
 };
 
 @interface MXAnimatedTransiton : NSObject<UIViewControllerAnimatedTransitioning>
 
-
+/**
+ *  跳转动画
+ *
+ *  @param type          动画类型
+ *  @param duration      动画时间
+ *  @param presentHeight 弹出距离
+ *  @param scale         缩放系数
+ *
+ *  @return 
+ */
 + (MXAnimatedTransiton *)transitionWithType:(MXAnimatedType)type
                                   durantion:(NSTimeInterval)duration
                               presentHeight:(CGFloat)presentHeight

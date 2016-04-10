@@ -230,8 +230,8 @@
     UIView *tempView = [fromVC.view snapshotViewAfterScreenUpdates:NO];
     tempView.frame = fromVC.view.frame;
     
-    UIImage *leftPartImage = [self screenShotingView:tempView size:CGSizeMake(tempView.bounds.size.width/2, tempView.bounds.size.height)];
-    UIImage *rightPartImage = [self screenShotingView:tempView size:CGSizeMake(tempView.bounds.size.width/2, tempView.bounds.size.height)];
+    UIImage *leftPartImage = [self imageFromView:tempView atFrame:CGRectMake(0, 0, tempView.bounds.size.width/2, tempView.bounds.size.height)];
+    UIImage *rightPartImage = [self imageFromView:tempView atFrame:CGRectMake(tempView.bounds.size.width/2, 0, tempView.bounds.size.width/2, tempView.bounds.size.height)];
     
     UIImageView *leftPartWindow = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, tempView.bounds.size.width/2, tempView.bounds.size.height)];
     leftPartWindow.image = leftPartImage;
@@ -254,7 +254,7 @@
     
     // 我们要设置外部所传参数
     // 设置呈现的高度
-    toVC.view.frame = CGRectMake(-self.presentHeight,0,self.presentHeight,containerView.frame.size.height);
+//    toVC.view.frame = CGRectMake(-self.presentHeight,0,self.presentHeight,containerView.frame.size.height);
     
     // 开始动画
     __weak __typeof(self) weakSelf = self;
@@ -263,7 +263,7 @@
 //        tempView.transform = CGAffineTransformMakeTranslation(weakSelf.presentHeight, 0);
         leftPartWindow.transform = CGAffineTransformMakeTranslation(- tempView.bounds.size.width/2, 0);
         rightPartWindow.transform = CGAffineTransformMakeTranslation( tempView.bounds.size.width/2, 0);
-        toVC.view.transform   = CGAffineTransformMakeTranslation(weakSelf.presentHeight, 0);
+//        toVC.view.transform   = CGAffineTransformMakeTranslation(weakSelf.presentHeight, 0);
         
         
     } completion:^(BOOL finished) {
@@ -323,17 +323,33 @@
     return resultingImage;
 }
 
-- (UIImage *)screenShotingView:(UIView *)view size:(CGSize)size {
-    UIGraphicsBeginImageContext(size);
-    if ([view respondsToSelector:@selector(drawViewHierarchyInRect:afterScreenUpdates:)]) {
-        [view drawViewHierarchyInRect:view.bounds afterScreenUpdates:YES];
-    }else {
-        [view.layer renderInContext:UIGraphicsGetCurrentContext()];
-    }
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+//获得屏幕图像
+- (UIImage *)imageFromView: (UIView *) theView
+{
+    
+    UIGraphicsBeginImageContext(theView.frame.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    [theView.layer renderInContext:context];
+    UIImage *theImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    return image;
+    
+    return theImage;
 }
+
+//获得某个范围内的屏幕图像
+- (UIImage *)imageFromView: (UIView *) theView   atFrame:(CGRect)r
+{
+    UIGraphicsBeginImageContext(theView.frame.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSaveGState(context);
+    UIRectClip(r);
+    [theView.layer renderInContext:context];
+    UIImage *theImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return  theImage;//[self getImageAreaFromImage:theImage atFrame:r];
+}
+
 
 
 

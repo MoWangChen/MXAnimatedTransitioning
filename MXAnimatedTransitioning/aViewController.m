@@ -31,7 +31,17 @@
     
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+}
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+}
 
 - (void)backVC:(id)sender {
     

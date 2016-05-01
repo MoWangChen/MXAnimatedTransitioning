@@ -257,7 +257,7 @@
 //    toVC.view.frame = CGRectMake(-self.presentHeight,0,self.presentHeight,containerView.frame.size.height);
     
     // 开始动画
-    __weak __typeof(self) weakSelf = self;
+//    __weak __typeof(self) weakSelf = self;
     [UIView animateWithDuration:self.duration delay:0.0 usingSpringWithDamping:0.5 initialSpringVelocity:1.0 / 0.5 options:0 animations:^{
         // 在Y方向移动指定的高度
 //        tempView.transform = CGAffineTransformMakeTranslation(weakSelf.presentHeight, 0);

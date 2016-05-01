@@ -29,6 +29,13 @@
     
 }
 
+
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
+
+
 - (void)clickBlank:(UITapGestureRecognizer *)gesture
 {
     [gesture.currentViewController dismissViewControllerAnimated:YES completion:nil];

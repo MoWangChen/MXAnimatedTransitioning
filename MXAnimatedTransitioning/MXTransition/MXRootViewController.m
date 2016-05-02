@@ -23,8 +23,17 @@
     if (_MXType != MXAnimatedSegueTypeDefault) {
         self.transitioningDelegate = self;
         self.modalPresentationStyle = UIModalPresentationCustom;
-        self.view.frame = CGRectMake(0, 0, 220 , ScreenHeight);
         self.view.clipsToBounds = YES;
+        
+        switch (_MXType) {
+            case MXAnimatedSegueTypeSlider:
+                self.view.frame = CGRectMake(0, 0, 220, ScreenHeight);
+                break;
+                
+            default:
+                break;
+        }
+        
     }
     
 }
@@ -50,7 +59,7 @@
             break;
             
         case MXAnimatedSegueTypeWindow:
-            return [MXAnimatedTransiton transitionWithType:MXAnimatedPresentWindowType durantion:0.5 presentHeight:self.view.bounds.size.width scale:CGPointMake(1, 1)];
+            return [MXAnimatedTransiton transitionWithType:MXAnimatedPresentWindowType durantion:0.5 presentHeight:ScreenWidth scale:CGPointMake(1, 1)];
             break;
             
         default:
@@ -70,7 +79,7 @@
             break;
             
         case MXAnimatedSegueTypeWindow:
-            return [MXAnimatedTransiton transitionWithType:MXAnimatedDismissWindowType durantion:0.5 presentHeight:self.view.bounds.size.width scale:CGPointMake(1, 1)];
+            return [MXAnimatedTransiton transitionWithType:MXAnimatedDismissWindowType durantion:0.5 presentHeight:ScreenWidth scale:CGPointMake(1, 1)];
             break;
             
         default:

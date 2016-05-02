@@ -21,6 +21,23 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
+    UIView *left_upView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width/2, self.view.bounds.size.height/2)];
+    left_upView.backgroundColor = [UIColor redColor];
+    [self.view addSubview:left_upView];
+    
+    UIView *left_downView = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height/2, self.view.bounds.size.width/2, self.view.bounds.size.height/2)];
+    left_downView.backgroundColor = [UIColor yellowColor];
+    [self.view addSubview:left_downView];
+    
+    UIView *right_upView = [[UIView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2, 0, self.view.bounds.size.width/2, self.view.bounds.size.height/2)];
+    right_upView.backgroundColor = [UIColor lightGrayColor];
+    [self.view addSubview:right_upView];
+    
+    UIView *right_downView = [[UIView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2, self.view.bounds.size.height/2, self.view.bounds.size.width/2, self.view.bounds.size.height/2)];
+    right_downView.backgroundColor = [UIColor purpleColor];
+    [self.view addSubview:right_downView];
+    
+    
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.frame = CGRectMake(50, 50, 100, 40);
     [button setTitle:@"present跳转" forState:UIControlStateNormal];
@@ -36,7 +53,7 @@
 - (void)nextVC
 {
     AViewController *aVC = [AViewController new];
-    aVC.MXType = MXAnimatedSegueTypeWindow;
+    aVC.MXType = MXAnimatedSegueTypeSlider;
     [self presentViewController:aVC animated:YES completion:nil];
 }
 

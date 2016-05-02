@@ -46,14 +46,16 @@
 
 - (void)animationEnded:(BOOL)transitionCompleted
 {
-//    NSLog(@"%s", __FUNCTION__);
+    NSLog(@"%s", __FUNCTION__);
 }
 
+// 指定转场动画时长，必须实现
 - (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext
 {
     return self.duration;
 }
 
+// 转场动画效果
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext
 {
     switch (self.type) {

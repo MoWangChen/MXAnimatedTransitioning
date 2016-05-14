@@ -10,12 +10,18 @@
 #import "UITapGestureRecognizer+blankSlider.h"
 #import "UIView+Screenshot.h"
 
+#define mainScreenWidth     [UIScreen mainScreen].bounds.size.width
+#define mainScreenHeight    [UIScreen mainScreen].bounds.size.height
+
 @interface MXAnimatedTransiton ()
 
 @property (nonatomic, assign) MXAnimatedType type;
 @property (nonatomic, assign) CGFloat        presentHeight;
 @property (nonatomic, assign) CGPoint        scale;
 @property (nonatomic, assign) NSTimeInterval duration;
+
+// Scale type
+@property (nonatomic, assign) CGRect         rect;
 
 @end
 
@@ -40,6 +46,19 @@
     return transition;
 }
 
+
++ (MXAnimatedTransiton *)transitionWithType:(MXAnimatedType)type
+                                  durantion:(NSTimeInterval)duration
+                                  CGRect:(CGRect )rect
+{
+    MXAnimatedTransiton * transition = [[MXAnimatedTransiton alloc] init];
+    
+    transition.type = type;
+    transition.duration = duration;
+    transition.rect = rect;
+    
+    return transition;
+}
 
 
 #pragma mark - UIViewControllerAnimatedTransitioning
@@ -78,6 +97,13 @@
             break;
         case MXAnimatedDismissWindowType:
             [self dismissWindowMode:transitionContext];
+            break;
+            
+        case MXAnimatedPresentScaleType:
+            [self presentScaleMode:transitionContext];
+            break;
+        case MXAnimatedDismissScaleType:
+            [self dismissScaleMode:transitionContext];
             break;
             
         default:
@@ -300,7 +326,84 @@
     }];
 }
 
+#pragma mark - 111
+- (void)presentScaleMode:(id<UIViewControllerContextTransitioning>)transitonContext
+{
+    UIViewController *fromVC    = [transitonContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+    UIViewController *toVC      = [transitonContext viewControllerForKey:UITransitionContextToViewControllerKey];
+    UIView *containerView       = [transitonContext containerView];
+    
+    NSLog(@"%f,  %f",toVC.view.frame.size.width,toVC.view.frame.size.height);
+    
+    // 对fromVC.view的截图添加动画效果
+    UIView *tempView = [fromVC.view snapshotViewAfterScreenUpdates:NO];
+    tempView.frame = fromVC.view.frame;
+    
+    UIImage *rectImage = [fromVC.view screenshotWithRect:self.rect];
+    
+    
+    UIImageView *rectWindow = [[UIImageView alloc] initWithFrame:self.rect];
+    rectWindow.image = rectImage;
+    rectWindow.backgroundColor = [UIColor redColor];
+    rectWindow.contentMode = UIViewContentModeScaleAspectFit;
 
+    
+    
+    
+//    // 对截图添加动画，则fromVC可以隐藏
+//    fromVC.view.hidden = YES;
+    
+    // 要实现转场，必须加入到containerView中
+    [containerView addSubview:toVC.view];
+    [containerView addSubview:tempView];
+    [containerView addSubview:rectWindow];
+    
+    
+    // 开始动画
+    [UIView animateWithDuration:self.duration animations:^{
+        // 缩放效果
+        rectWindow.transform = CGAffineTransformMakeScale(mainScreenWidth/self.rect.size.width, mainScreenHeight/self.rect.size.height);
+        rectWindow.center = containerView.center;
+    } completion:^(BOOL finished) {
+        if (finished) {
+            rectWindow.hidden = YES;
+            tempView.hidden = YES;
+//            fromVC.view.hidden = YES;
+            [transitonContext completeTransition:YES];
+        }
+    }];
+
+}
+
+- (void)dismissScaleMode:(id<UIViewControllerContextTransitioning>)transitonContext
+{
+    UIViewController *fromVC = [transitonContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+    UIViewController *toVC   = [transitonContext viewControllerForKey:UITransitionContextToViewControllerKey];
+    UIView *containerView    = [transitonContext containerView];
+    
+    // 取出present时的截图用于动画
+    UIView *tempView = containerView.subviews[1];
+    UIView *rectWindow = containerView.subviews[2];
+    
+    
+    tempView.hidden = NO;
+    rectWindow.hidden = NO;
+    
+    
+    // 开始动画
+    [UIView animateWithDuration:self.duration animations:^{
+        rectWindow.transform = CGAffineTransformIdentity;
+        rectWindow.frame = self.rect;
+    } completion:^(BOOL finished) {
+        if (finished) {
+            [transitonContext completeTransition:YES];
+            toVC.view.hidden = NO;
+            
+            // 将截图去掉
+            [rectWindow removeFromSuperview];
+        }
+    }];
+}
 
 #pragma mark - Privite Method
 - (void)clickBlank:(UITapGestureRecognizer *)gesture

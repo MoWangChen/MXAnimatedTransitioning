@@ -61,6 +61,11 @@
         case MXAnimatedSegueTypeWindow:
             return [MXAnimatedTransiton transitionWithType:MXAnimatedPresentWindowType durantion:0.5 presentHeight:ScreenWidth scale:CGPointMake(1, 1)];
             break;
+        
+        case MXAnimatedSegueTypeScale:
+            return [MXAnimatedTransiton transitionWithType:MXAnimatedPresentScaleType durantion:0.5 CGRect:self.imageRect];
+            break;
+
             
         default:
             break;
@@ -81,7 +86,11 @@
         case MXAnimatedSegueTypeWindow:
             return [MXAnimatedTransiton transitionWithType:MXAnimatedDismissWindowType durantion:0.5 presentHeight:ScreenWidth scale:CGPointMake(1, 1)];
             break;
-            
+        
+        case MXAnimatedSegueTypeScale:
+            return [MXAnimatedTransiton transitionWithType:MXAnimatedDismissScaleType durantion:0.5 CGRect:self.imageRect];
+            break;
+        
         default:
             break;
     }

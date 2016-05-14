@@ -19,6 +19,8 @@
     
     self.view.backgroundColor = [UIColor cyanColor];
     
+    [self testUI1];
+    
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.frame = CGRectMake( self.view.bounds.size.width - 150, 100, 100, 50);
     [button setTitle:@"dismiss返回" forState:UIControlStateNormal];
@@ -29,6 +31,15 @@
     [self.view addSubview:button];
     
     
+}
+
+- (void)testUI1
+{
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
+    imageView.image = [UIImage imageNamed:@"ic_G3_kuaisudoujiang"];
+    imageView.contentMode = UIViewContentModeScaleToFill;
+    [self.view addSubview:imageView];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -49,7 +60,10 @@
 }
 
 
-
+- (void)dealloc
+{
+    NSLog(@"---------------A dealloc");
+}
 
 
 

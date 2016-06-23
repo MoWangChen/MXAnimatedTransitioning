@@ -70,8 +70,6 @@
 - (void)nextVC
 {
     AViewController *aVC = [AViewController new];
-    aVC.MXType = MXAnimatedSegueTypeScale;
-    aVC.imageRect = _imageRect;
     [self presentViewController:aVC animated:YES completion:nil];
 //    [self.navigationController pushViewController:aVC animated:YES];
 }

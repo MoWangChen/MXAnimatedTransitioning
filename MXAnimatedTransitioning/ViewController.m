@@ -21,7 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self testUI1];
+    [self testUI2];
     
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -70,8 +70,8 @@
 - (void)nextVC
 {
     AViewController *aVC = [AViewController new];
-    aVC.MXType = MXAnimatedSegueTypeScale;
-    aVC.imageRect = _imageRect;
+    aVC.MXType = MXAnimatedSegueTypeSlider;
+//    aVC.imageRect = _imageRect;
     [self presentViewController:aVC animated:YES completion:nil];
 //    [self.navigationController pushViewController:aVC animated:YES];
 }

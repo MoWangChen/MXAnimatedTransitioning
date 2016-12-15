@@ -193,7 +193,11 @@
     [tempView addSubview:coolLine];
     
     // 增加空白处  点击 退出侧边栏效果
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
     UITapGestureRecognizer *tapBlank = [[UITapGestureRecognizer alloc] initWithTarget:toVC action:@selector(clickBlank:)];
+#pragma clang diagnostic pop
+    
     tapBlank.currentViewController = toVC;
     [tempView addGestureRecognizer:tapBlank];
     
@@ -248,7 +252,6 @@
     }];
 }
 
-
 #pragma mark - Privite Animate -- 2.窗户效果
 - (void)presentWindowMode:(id<UIViewControllerContextTransitioning>)transitonContext {
     UIViewController *fromVC    = [transitonContext viewControllerForKey:UITransitionContextFromViewControllerKey];
@@ -273,8 +276,6 @@
     rightPartWindow.image = rightPartImage;
     rightPartWindow.backgroundColor = [UIColor yellowColor];
     rightPartWindow.contentMode = UIViewContentModeScaleAspectFit;
-    
-    
     
     // 对截图添加动画，则fromVC可以隐藏
     fromVC.view.hidden = YES;
@@ -346,9 +347,6 @@
     rectWindow.image = rectImage;
     rectWindow.backgroundColor = [UIColor redColor];
     rectWindow.contentMode = UIViewContentModeScaleAspectFit;
-
-    
-    
     
 //    // 对截图添加动画，则fromVC可以隐藏
 //    fromVC.view.hidden = YES;
@@ -368,7 +366,6 @@
         if (finished) {
             rectWindow.hidden = YES;
             tempView.hidden = YES;
-//            fromVC.view.hidden = YES;
             [transitonContext completeTransition:YES];
         }
     }];
@@ -377,7 +374,7 @@
 
 - (void)dismissScaleMode:(id<UIViewControllerContextTransitioning>)transitonContext
 {
-    UIViewController *fromVC = [transitonContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+//    UIViewController *fromVC = [transitonContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     UIViewController *toVC   = [transitonContext viewControllerForKey:UITransitionContextToViewControllerKey];
     UIView *containerView    = [transitonContext containerView];
     
@@ -404,12 +401,5 @@
         }
     }];
 }
-
-#pragma mark - Privite Method
-- (void)clickBlank:(UITapGestureRecognizer *)gesture
-{
-    [gesture.currentViewController dismissViewControllerAnimated:YES completion:nil];
-}
-
 
 @end
